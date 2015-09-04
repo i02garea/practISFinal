@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string>
 #include <cstring>
-#include <list>
+#include<list>
 #include <fstream>
 #include "paciente.hpp"
 #include "agenda.hpp"
@@ -43,9 +43,9 @@ void BuscarNombre(string nombre,list<Paciente> agenda)
 
 list<Paciente> Borrar(const string &DNI,list<Paciente> agenda)
 {
-	int n;
-	
-	for (list<Paciente>::const_iterator it=agenda.begin() ; it!=agenda.end() ; it++) {
+	int n=0;
+	std::list<Paciente>::const_iterator it = agenda.begin();
+	while (it != agenda.end() and n==0){
 		if(it->getDNI()==DNI)
 		{
 			n=1;
@@ -54,6 +54,7 @@ list<Paciente> Borrar(const string &DNI,list<Paciente> agenda)
 			it=agenda.end();
 			
 		}
+		it++;
 	}
 	if(n==0)
 	{
@@ -65,14 +66,15 @@ list<Paciente> Borrar(const string &DNI,list<Paciente> agenda)
 list<Paciente> Modificar(const string &DNI,list<Paciente> agenda)
 {
 	string dni,nombre, apellidos,telefono,fechaNac;
+	struct cita cita;
 	//int telefono;
 	int t=0;
-	std::list<Persona>::iterator it = agenda.begin();
+	std::list<Paciente>::iterator it = agenda.begin();
 	while(it != agenda.end())
 	{ 
 		if(it->getDNI()==DNI)
 		{
-			while(t!=10)
+			while(t!=0)
 			{
 				cout<<"+++++++++++++++++++++++++++++++++\n";
 				cout<<"\t-1. Modificar Nombre\n";
@@ -80,6 +82,7 @@ list<Paciente> Modificar(const string &DNI,list<Paciente> agenda)
 				cout<<"\t-3. Modificar DNI\n";
 				cout<<"\t-4. Modificar Teléfono\n";
 				cout<<"\t-5. Modificar Fecha de Nacimiento\n";
+				cout<<"\t-6. Modificar Datos de la Cita\n";
 
 				cout<<"\t-0. Salir\n";
 				cout<<"+++++++++++++++++++++++++++++++++\n";
@@ -111,11 +114,20 @@ list<Paciente> Modificar(const string &DNI,list<Paciente> agenda)
 						cin>>fechaNac;
 						it->setFechaNac(fechaNac);
 						break;
-
+					case 6:
+						cout << "Introduce los datos da la nueva cita: ";
+						cout << "Fecha de la cita:";
+						cin >> cita.fecha;
+						cout << "Hora de la cita:";
+						cin >> cita.hora;
+						cout << "Motivo:";
+						cin >> cita.motivo;
+						it->setCita(cita);
+						break;
 				}
 			}
 		}
-			it++;
+		it++;
 		
 	}
 	return agenda;

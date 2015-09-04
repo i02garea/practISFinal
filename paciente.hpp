@@ -65,9 +65,9 @@ class Paciente
 		{
 			_nombre=nombre;
 		}
-		void setFechaNac(const string nombre)
+		void setFechaNac(const string fecha)
 		{
-			_fechaNac=nombre;
+			_fechaNac=fecha;
 		}
 		void setApellidos(const string apellidos)
 		{

@@ -1,6 +1,6 @@
 #ifndef _AGENDA_HPP_
 #define _AGENDA_HPP_
-#include"Paciente.hpp"
+#include"paciente.hpp"
 #include<list>
 using namespace std;
 class Agenda
