@@ -13,8 +13,8 @@ using namespace std;
 			}
 
 
-			virtual void guardar(const list<Persona> &contactos, string fichero, int n)=0;
-			virtual list<Persona> cargar(string fichero)=0;
+			virtual void guardar(const list<Paciente> &contactos, string fichero, int n)=0;
+			virtual list<Paciente> cargar(string fichero)=0;
 	};
 
 #endif
