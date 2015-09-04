@@ -8,10 +8,17 @@ class Agenda
 	private:
 	list<Paciente> agenda;
 	public:
-	Agenda(Paciente a)
-	{
-		agenda.push_back(a); 
+	//Contructores	
+	inline Agenda(){
+
 	}
+
+	inline Agenda(Paciente a){
+		agenda.push_back(a);
+	}
+
+	//Metodos
+
 	inline void insertar(const Paciente &a)
 	{
 		agenda.push_back(a); 
@@ -27,6 +34,9 @@ class Agenda
 		        it++;
 		}
 	}
+
+
+	
 	inline list<Paciente> getAgenda() const
 	{
 		return agenda;

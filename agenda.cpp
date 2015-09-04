@@ -4,8 +4,7 @@
 #include <stdio.h>
 #include <string>
 #include <cstring>
-#include<list>
-#include <fstream>
+#include <list>
 #include "paciente.hpp"
 #include "agenda.hpp"
 
@@ -44,14 +43,17 @@ void BuscarNombre(string nombre,list<Paciente> agenda)
 list<Paciente> Borrar(const string &DNI,list<Paciente> agenda)
 {
 	int n=0;
-	std::list<Paciente>::const_iterator it = agenda.begin();
+	std::list<Paciente>::iterator it = agenda.begin();
 	while (it != agenda.end() and n==0){
 		if(it->getDNI()==DNI)
 		{
 			n=1;
 			cout<<"Borrando\n";
-			agenda.erase(it);
+			cout<<"**************************\n";
+			cout<<"**************************\n";
+			it=agenda.erase(it);
 			it=agenda.end();
+			cout<<"Registro Borrado Correctamente\n";
 			
 		}
 		it++;
@@ -62,6 +64,7 @@ list<Paciente> Borrar(const string &DNI,list<Paciente> agenda)
 	}
 	return agenda;
 }
+
 
 list<Paciente> Modificar(const string &DNI,list<Paciente> agenda)
 {
