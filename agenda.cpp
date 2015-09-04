@@ -7,6 +7,7 @@
 #include <list>
 #include "paciente.hpp"
 #include "agenda.hpp"
+#include <sstream>
 
 //Espacio de nombres std
 using namespace std;
@@ -68,17 +69,18 @@ list<Paciente> Borrar(const string &DNI,list<Paciente> agenda)
 
 list<Paciente> Modificar(const string &DNI,list<Paciente> agenda)
 {
-	string dni,nombre, apellidos,telefono,fechaNac;
+	string dni,nombre, apellidos,telefono,fechaNac,cadena1;
 	struct cita cita;
 	//int telefono;
-	int t=0;
+	int n;
 	std::list<Paciente>::iterator it = agenda.begin();
 	while(it != agenda.end())
 	{ 
 		if(it->getDNI()==DNI)
 		{
-			while(t!=0)
+			while(n!=0)
 			{
+				cout<<"entra aqui2"<<endl;
 				cout<<"+++++++++++++++++++++++++++++++++\n";
 				cout<<"\t-1. Modificar Nombre\n";
 				cout<<"\t-2. Modificar Apellidos\n";
@@ -89,8 +91,8 @@ list<Paciente> Modificar(const string &DNI,list<Paciente> agenda)
 
 				cout<<"\t-0. Salir\n";
 				cout<<"+++++++++++++++++++++++++++++++++\n";
-				cin>>t;
-				switch(t)
+				cin>>n;
+				switch(n)
 				{
 					case 1:
 						cout<<"Introduce el nuevo nombre: ";
