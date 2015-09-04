@@ -140,6 +140,7 @@ int main()
 
 			case 7:
 				cout<<"Introduce el dni\n";
+				getchar();
 				cin>>dni;
 				a.setAgenda(Modificar(dni,a.getAgenda()));
 		 		break;
