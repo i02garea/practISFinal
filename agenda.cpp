@@ -30,7 +30,9 @@ void BuscarNombre(string nombre,list<Paciente> agenda)
 		if(it->getNombre()==nombre)
 		{
 			n=1;
-			cout<<"Paciente encontrado"<<endl;
+			cout<<"******Paciente encontrado******"<<endl;
+			cout<<"******Datos del Paciente.******"<<endl;
+			imprimir(*it);
 		}
 		it++;
 	}
@@ -72,15 +74,15 @@ list<Paciente> Modificar(const string &DNI,list<Paciente> agenda)
 	string dni,nombre, apellidos,telefono,fechaNac,cadena1;
 	struct cita cita;
 	//int telefono;
-	int n;
+	int n,encontrado=0;
 	std::list<Paciente>::iterator it = agenda.begin();
-	while(it != agenda.end())
-	{ 
+	while(it != agenda.end() and encontrado==0)
+	{
 		if(it->getDNI()==DNI)
 		{
+			encontrado=1;
 			while(n!=0)
 			{
-				cout<<"entra aqui2"<<endl;
 				cout<<"+++++++++++++++++++++++++++++++++\n";
 				cout<<"\t-1. Modificar Nombre\n";
 				cout<<"\t-2. Modificar Apellidos\n";
@@ -134,6 +136,9 @@ list<Paciente> Modificar(const string &DNI,list<Paciente> agenda)
 		}
 		it++;
 		
+	}
+	if(encontrado==0){
+		cout <<"El DNI insertado no se encuentra en la agenda"<<endl;	
 	}
 	return agenda;
 }

@@ -1,17 +1,16 @@
 //Includes del resto de archivos
 
-#include "agenda.hpp"
-#include "paciente.hpp"
-#include "GestorAGFichero.hpp"
-
+#include "funcionalidad.hpp"
 
 
 //Librerias básicas
 
-#include<iostream>
-#include<stdio.h>
-#include<string>
-#include<cstring>
+#include <iostream>
+#include <stdio.h>
+#include <string>
+#include <cstring>
+#include <cstdlib>
+
 
 //Espacio de nombres std
 
@@ -22,16 +21,16 @@ using namespace std;
 int main()
 {
 
-	int opcion,n=0,motivo;
-	string c, nombre, apellidos, dni, telefono, fechaNac;
-	struct cita cita;
-	Paciente p;
+	int opcion,n=0;
+	
+
 	Agenda a;
-	string fichero;
+	Funcionalidad f(a);
 
 	const int TAM=200;
 
 	while(opcion!=0){
+		system("clear");
 		cout<<"---------------------------------------------"<<endl;
 		cout<<"---------------------------------------------"<<endl;
 		cout<<"\t-1. Insertar un nuevo paciente\n";
@@ -49,53 +48,8 @@ int main()
 		{
 			case 1:  //Insertar nuevo Paciente
 				if(n<=TAM){	
-					getchar();
-					cout<<"Introduce el nombre: "<<endl;
-					getline(std::cin,nombre);
-					
-					cout<<"Introduce apellidos: "<<endl;
-					getline(std::cin,apellidos);
-					
-					cout<<"Introduce el dni: \n";
-					cin>>dni;
-					getchar();
-					cout<<"Introduce el telefono: \n";
-					cin>>telefono;
-					cout<<"Introduce la fecha de Nacimiento: \n";
-					getchar();
-					getline(cin,fechaNac);
-					cout<<"Introduce el Fecha de Cita:\n";
-					getchar();
-					getline(cin,cita.fecha);
-					cout<<"Introduce el Hora de Cita:\n";
-					getchar();
-					getline(cin,cita.hora);
-					
-					cout<<"Elija motivo de la cita:\n";
-					cout<<"  1-Consulta Medica.\n";
-					cout<<"  2-Receta Medica.\n";
-					cout<<"  3-Revision Enfermedad\n";
-					cout<<"  Opcion elegida: ";
-					cin>>motivo;
-					switch(motivo)
-					{
-						case 1:
-							cita.motivo="Consulta";
-							break;
-						case 2:
-							cita.motivo="Receta";
-							break;
-						case 3:
-							cita.motivo="Revision";
-							break;
-					}
-					p.setNombre(nombre);
-					p.setApellidos(apellidos);
-					p.setDNI(dni);
-					p.setTelefono(telefono);
-					p.setFechaNac(fechaNac);
-					p.setCita(cita);
-					a.insertar(p);
+					system("clear");
+					f.Insertar();
 					n++;
 				}
 
@@ -107,42 +61,35 @@ int main()
 				break;
 
 			case 2:
-				cout<<"Introduce el nombre del fichero para guardar tu agenda: "<<endl;
-				getchar();
-				getline(cin,fichero);
-				guardar(a.getAgenda(),fichero);
+				system("clear");
+				f.guardarAgenda();
 		 		break;
 
 		 	case 3:
-		 		cout<<"Introduce el nombre del fichero desde donde quieres cargar la agenda:"<<endl;
-				getchar();
-				getline(cin,fichero);
-				a.setAgenda(cargar(fichero));
+		 		system("clear");
+		 		f.cargarAgenda();
 		 		break;
+		 		cout<<"Agenda cargada correctamente."<<endl;
+
 
 		 	case 4:
-
-				mostrar(a.getAgenda());
+		 		system("clear");
+				f.listarAgenda();
 		 		break;
 
 		 	case 5:
-		 		getchar();
-				cout<<"Introduce el nombre: \n";
-				getline(cin,c);
-				BuscarNombre(c,a.getAgenda());
+		 		system("clear");
+		 		f.buscarPaciente();
 				break;
 
 			case 6:
-				cout<<"Introduce el dni: \n";
-				cin>>dni;
-				a.setAgenda(Borrar(dni,a.getAgenda()));
+				system("clear");
+		 		f.eliminarPaciente();
 				break;
 
 			case 7:
-				cout<<"Introduce el dni\n";
-				getchar();
-				cin>>dni;
-				a.setAgenda(Modificar(dni,a.getAgenda()));
+				system("clear");
+				f.modificarPaciente();
 		 		break;
 		}
 	}
